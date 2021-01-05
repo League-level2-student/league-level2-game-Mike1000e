@@ -18,28 +18,7 @@ public class ProjectManager {
 			proMan.setup();
 			
 		}
-		public void GameMenuState() {
-			
-			
-			
-		}
-		
-		public void GameState() {
-			
-			
-			
-			
-			
-		}
-		public void GameOverState() {
 	
-	
-	
-		}
-		public void StartGame() {
-			
-			
-			}
 		public ProjectManager() {
 			frame = new JFrame();
 			 gamePanel = new GamePanel();
