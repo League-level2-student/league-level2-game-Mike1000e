@@ -29,6 +29,7 @@ public class ProjectManager {
 				frame.setVisible(true);
 				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				frame.pack();
+				frame.pack();
 			
 			
 		}
