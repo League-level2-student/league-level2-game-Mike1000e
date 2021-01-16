@@ -18,6 +18,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 	  int currentState = MENU;
 	  Font titleFont;
 	  Timer frameDraw;
+	 MainCar car = new MainCar(200, 20, 50, 50);
 	  public void paintComponent(Graphics g) {
 		  if(currentState == MENU){
 				drawMenuState(g);
@@ -39,19 +40,18 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 			 titleFont = new Font("Arial", Font.PLAIN, 48);
 			 g.setFont(titleFont);
 			 g.setColor(Color.YELLOW);
-			 g.drawString("LEAGUE INVADERS", 20, 100);
+			 g.drawString("", 20, 100);
 			 titleFont = new Font("Arial", Font.PLAIN, 24);
 			 g.setFont(titleFont);
 			 g.setColor(Color.YELLOW);
-			 g.drawString("Press ENTER to start", 20, 300);
+			 g.drawString("", 20, 300);
 			 titleFont = new Font("Arial", Font.PLAIN, 24);
 			 g.setFont(titleFont);
 			 g.setColor(Color.YELLOW);
-			 g.drawString("Press SPACE for instructions", 20, 500);
+			 g.drawString("", 20, 500);
 		 }
 		 void drawGameState(Graphics g) {  
-			 g.setColor(Color.BLACK);
-			 g.fillRect(0, 0, ProjectManager.width, ProjectManager.height);
+			car.draw(g);
 		 }
 		 void drawEndState(Graphics g)  {
 			 g.setColor(Color.RED);
@@ -105,9 +105,15 @@ public void keyPressed(KeyEvent e) {
 	        currentState++;
 	    }
 	}  
-
-
+	if (e.getKeyCode()==KeyEvent.VK_RIGHT) {
+	    System.out.println("RIGHT");
+	}
+	if (e.getKeyCode()==KeyEvent.VK_LEFT) {
+	    System.out.println("LEFT");
+	}
 }
+
+
 @Override
 public void keyReleased(KeyEvent e) {
 	// TODO Auto-generated method stub

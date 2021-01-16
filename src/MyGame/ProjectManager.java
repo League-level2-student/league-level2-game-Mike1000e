@@ -24,13 +24,13 @@ public class ProjectManager {
 			 gamePanel = new GamePanel();
 		}
 		 void setup() {
-			frame.add(gamePanel);
+			 	frame.add(gamePanel);
 				frame.setPreferredSize(new Dimension(width,height));
 				frame.setVisible(true);
 				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				frame.pack();
 				frame.pack();
-			
+				frame.addKeyListener(gamePanel);
 			
 		}
 }
