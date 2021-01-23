@@ -7,7 +7,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.image.BufferedImage;
 
+import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -18,7 +20,14 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 	  int currentState = MENU;
 	  Font titleFont;
 	  Timer frameDraw;
-	 MainCar car = new MainCar(200, 20, 50, 50);
+	  Timer carSpawn;
+	  
+	 MainCar car = new MainCar(230, 500, 50, 115);
+	 
+	  ObjectManager objectManager= new ObjectManager(car);
+	  public static BufferedImage image;
+		public static boolean needImage = true;
+		public static boolean gotImage = false;	
 	  public void paintComponent(Graphics g) {
 		  if(currentState == MENU){
 				drawMenuState(g);
@@ -32,7 +41,9 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 	  public GamePanel() {
 		  frameDraw = new Timer(1000/60,this);
 		    frameDraw.start();
-		  
+		    if (needImage) {
+		        loadImage ("ACTUAL FINAL CODING TRACK.jpg");
+		    }
 	  }
 	  void drawMenuState(Graphics g) {  
 			 g.setColor(Color.BLUE);
@@ -51,18 +62,43 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 			 g.drawString("", 20, 500);
 		 }
 		 void drawGameState(Graphics g) {  
-			car.draw(g);
+			objectManager.draw(g);
+			 if (gotImage) {
+					g.drawImage(image, 0, 0, ProjectManager.width, ProjectManager.height, null);
+				} else {
+					g.setColor(Color.BLACK);
+					g.fillRect(0, 0, ProjectManager.width, ProjectManager.height);
+								}
+			 objectManager.draw(g);
+
 		 }
+		 
+		
 		 void drawEndState(Graphics g)  {
-			 g.setColor(Color.RED);
-			 g.fillRect(0, 0, ProjectManager.width, ProjectManager.width);
+			 g.fillRect(0, 0, ProjectManager.width, ProjectManager.height);
+			 titleFont = new Font("Arial", Font.PLAIN, 48);
+			 g.setFont(titleFont);
+			 g.setColor(Color.YELLOW);
+			 g.drawString("GAME OVER", 20, 100);
+			 titleFont = new Font("Arial", Font.PLAIN, 24);
+			 g.setFont(titleFont);
+			 g.setColor(Color.YELLOW);
+			 g.drawString("You killed " +  " ememies, POG", 20, 300);
+			 titleFont = new Font("Arial", Font.PLAIN, 24);
+			 g.setFont(titleFont);
+			 g.setColor(Color.YELLOW);
+			 g.drawString("Press ENTER to restart", 20, 500);
 		 }
+		 
 	public void UpdateMenuState() {
 		
 		
+	}
+	public void UpdateGameState() {
+
+		 objectManager.update();
 		
 	}
-	
 	public void UpdateEndState() {
 		
 		
@@ -88,12 +124,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 public void keyTyped(KeyEvent e) {
 	// TODO Auto-generated method stub
 
-	if (e.getKeyCode()==KeyEvent.VK_RIGHT) {
-	    System.out.println("RIGHT");
-	}
-	if (e.getKeyCode()==KeyEvent.VK_LEFT) {
-	    System.out.println("LEFT");
-	}
+	
 }
 @Override
 public void keyPressed(KeyEvent e) {
@@ -119,5 +150,18 @@ public void keyReleased(KeyEvent e) {
 	// TODO Auto-generated method stub
 	
 }
+
+void loadImage(String imageFile) {
+    if (needImage) {
+        try {
+            image = ImageIO.read(this.getClass().getResourceAsStream(imageFile));
+	    gotImage = true;
+        } catch (Exception e) {
+            
+        }
+        needImage = false;
+    }
+}
+
 
 }

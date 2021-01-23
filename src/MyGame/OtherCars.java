@@ -1,5 +1,8 @@
 package MyGame;
 
+import java.awt.Color;
+import java.awt.Graphics;
+
 public class OtherCars extends GameObject{
 	public OtherCars(int x, int y, int width, int height) {
 		super(x, y, width, height);
@@ -30,4 +33,10 @@ public void mainRight(){
 	
 	
 }
+void draw(Graphics g) {
+    g.setColor(Color.YELLOW);
+    g.fillRect(x, y, width, height);
+	
+}
+
 }
