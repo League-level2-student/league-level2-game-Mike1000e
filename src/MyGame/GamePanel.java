@@ -22,7 +22,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 	  Timer frameDraw;
 	  Timer carSpawn;
 	  
-	 MainCar car = new MainCar(230, 500, 50, 115);
+	 MainCar car = new MainCar(230, 350, 50, 115);
 	 
 	  ObjectManager objectManager= new ObjectManager(car);
 	  public static BufferedImage image;
@@ -89,6 +89,12 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 			 g.setColor(Color.YELLOW);
 			 g.drawString("Press ENTER to restart", 20, 500);
 		 }
+		 public void StartGame() {
+			 carSpawn = new Timer(1000 , objectManager);
+			    carSpawn.start();
+			 
+			 
+		 }
 		 
 	public void UpdateMenuState() {
 		
@@ -113,7 +119,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 		if(currentState == MENU){
 		    UpdateMenuState();
 		}else if(currentState == GAME){
-		   
+		   UpdateGameState();
 		}else if(currentState == END){
 		    UpdateEndState();
 		}
@@ -132,10 +138,14 @@ public void keyPressed(KeyEvent e) {
 	if (e.getKeyCode()==KeyEvent.VK_ENTER) {
 	    if (currentState == END) {
 	        currentState = MENU;
-	    } else {
+	    
+	  }else if  (currentState == MENU) {
+	        currentState = GAME;
+	        StartGame();
+	        }else {
 	        currentState++;
 	    }
-	}  
+	}
 	if (e.getKeyCode()==KeyEvent.VK_RIGHT) {
 	    System.out.println("RIGHT");
 	}
