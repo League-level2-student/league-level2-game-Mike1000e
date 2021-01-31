@@ -23,7 +23,7 @@ public class OtherCars extends GameObject{
 	
 
 void Update() {
-	System.out.println("hi");
+	
 	this.y-=speed;
 	super.Update();
 	}

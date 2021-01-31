@@ -11,32 +11,22 @@ public class MainCar extends GameObject{
 	public MainCar(int x, int y, int width, int height) {
 		super(x, y, width, height);
 		// TODO Auto-generated constructor stub
+		 speed = 20;
 		if (needImage) {
 		    loadImage ("image (2).jpg");
 		}
 	}
 	
-	public void mainUp(){
-		y+=speed;
-		
-		
-		
-	}
-public void mainDown(){
-		y-=speed;
-		
-		
-		
-	}
+	
 public void mainLeft(){
-	x-=speed;
-	
-	
+	this.x-=speed;
+	System.out.println("hi");
+	super.Update();
 	
 }
 public void mainRight(){
 	
-	x+=speed;
+	this.x+=speed;
 	
 	
 }

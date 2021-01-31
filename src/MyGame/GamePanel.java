@@ -147,10 +147,11 @@ public void keyPressed(KeyEvent e) {
 	    }
 	}
 	if (e.getKeyCode()==KeyEvent.VK_RIGHT) {
-	    System.out.println("RIGHT");
+	    car.mainRight();
+	    System.out.println("hi");
 	}
 	if (e.getKeyCode()==KeyEvent.VK_LEFT) {
-	    System.out.println("LEFT");
+	   car.mainLeft();
 	}
 }
 
