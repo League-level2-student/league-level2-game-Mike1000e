@@ -8,10 +8,12 @@ public class MainCar extends GameObject{
 	public static BufferedImage image;
 	public static boolean needImage = true;
 	public static boolean gotImage = false;	
+	
 	public MainCar(int x, int y, int width, int height) {
 		super(x, y, width, height);
 		// TODO Auto-generated constructor stub
 		 speed = 20;
+		 
 		if (needImage) {
 		    loadImage ("image (2).jpg");
 		}

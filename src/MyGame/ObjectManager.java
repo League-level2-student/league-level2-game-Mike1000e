@@ -5,11 +5,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Random;
-
+import java.util.Timer;
+import java.util.TimerTask;
 public class ObjectManager  implements ActionListener {
+    
 	MainCar main;
       ArrayList<OtherCars> others = new ArrayList<OtherCars>();
-     
+    Timer endGame = new Timer();
+ 
       Random random = new Random();
       public ObjectManager(MainCar main) {
      
@@ -78,7 +81,10 @@ public class ObjectManager  implements ActionListener {
          		  if(others.get(i).isActive==false) {
          			others.remove(i) ; 
          		  }
-         		  
+         		  if(main.isActive==false) {
+           			main.speed=0;
+           			
+           		  }
          	   } 
       	   
 	}	

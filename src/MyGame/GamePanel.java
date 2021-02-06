@@ -21,7 +21,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 	  Font titleFont;
 	  Timer frameDraw;
 	  Timer carSpawn;
-	  
+	  Timer endGame;
+	  int timer = 1500*(200/60);
 	 MainCar car = new MainCar(230, 350, 50, 115);
 	 
 	  ObjectManager objectManager= new ObjectManager(car);
@@ -32,14 +33,19 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 		  if(currentState == MENU){
 				drawMenuState(g);
 			}else if(currentState == GAME){
-				drawGameState(g);
+					drawGameState(g);
+					timer--;
+					 if(car.isActive==false) {
+		           			currentState++;
+		           			
+		           		  }
 			}else if(currentState == END){
 				drawEndState(g);
 			}
 		  
 	  }
 	  public GamePanel() {
-		  frameDraw = new Timer(1000/60,this);
+		  frameDraw = new Timer(2000/60,this);
 		    frameDraw.start();
 		    if (needImage) {
 		        loadImage ("ACTUAL FINAL CODING TRACK.jpg");
@@ -70,7 +76,10 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 					g.fillRect(0, 0, ProjectManager.width, ProjectManager.height);
 								}
 			 objectManager.draw(g);
-
+			 titleFont = new Font("Arial", Font.PLAIN, 24);
+			 g.setFont(titleFont);
+			 g.setColor(Color.YELLOW);
+			 g.drawString(timer+"", 50, 100);
 		 }
 		 
 		
@@ -92,7 +101,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 		 public void StartGame() {
 			 carSpawn = new Timer(1000 , objectManager);
 			    carSpawn.start();
-			 
+			 	
 			 
 		 }
 		 
@@ -101,7 +110,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 		
 	}
 	public void UpdateGameState() {
-
+		
 		 objectManager.update();
 		
 	}
@@ -141,6 +150,8 @@ public void keyPressed(KeyEvent e) {
 	    
 	  }else if  (currentState == MENU) {
 	        currentState = GAME;
+	   
+
 	        StartGame();
 	        }else {
 	        currentState++;
@@ -153,6 +164,7 @@ public void keyPressed(KeyEvent e) {
 	if (e.getKeyCode()==KeyEvent.VK_LEFT) {
 	   car.mainLeft();
 	}
+	
 }
 
 
