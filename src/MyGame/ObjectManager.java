@@ -12,7 +12,7 @@ public class ObjectManager  implements ActionListener {
 	MainCar main;
       ArrayList<OtherCars> others = new ArrayList<OtherCars>();
     Timer endGame = new Timer();
- 
+static int win = 0;
       Random random = new Random();
       public ObjectManager(MainCar main) {
      
@@ -82,6 +82,7 @@ public class ObjectManager  implements ActionListener {
          			others.remove(i) ; 
          		  }
          		  if(main.isActive==false) {
+         			  win=1;
            			main.speed=0;
            			
            		  }

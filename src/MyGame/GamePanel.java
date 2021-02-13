@@ -14,6 +14,7 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 
 public class GamePanel extends JPanel implements ActionListener, KeyListener{
+
 	final int MENU = 0;
 	  final int GAME = 1;
 	  final int END = 2;
@@ -22,7 +23,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 	  Timer frameDraw;
 	  Timer carSpawn;
 	  Timer endGame;
-	  int timer = 1500*(200/60);
+	  int timer = 1500*(70/60);
 	 MainCar car = new MainCar(230, 350, 50, 115);
 	 
 	  ObjectManager objectManager= new ObjectManager(car);
@@ -35,6 +36,11 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 			}else if(currentState == GAME){
 					drawGameState(g);
 					timer--;
+					if(timer<=0) {
+						ObjectManager.win=2;
+						
+						
+					}
 					 if(car.isActive==false) {
 		           			currentState++;
 		           			
@@ -90,9 +96,14 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 			 g.setColor(Color.YELLOW);
 			 g.drawString("GAME OVER", 20, 100);
 			 titleFont = new Font("Arial", Font.PLAIN, 24);
+			 if(ObjectManager.win==2) {
 			 g.setFont(titleFont);
 			 g.setColor(Color.YELLOW);
-			 g.drawString("You killed " +  " ememies, POG", 20, 300);
+			 g.drawString("You WON" +  "POG", 20, 300);}
+			 if(ObjectManager.win==1) {
+				 g.setFont(titleFont);
+				 g.setColor(Color.YELLOW);
+				 g.drawString("You Lost" +  "Sadge", 20, 300);}
 			 titleFont = new Font("Arial", Font.PLAIN, 24);
 			 g.setFont(titleFont);
 			 g.setColor(Color.YELLOW);
